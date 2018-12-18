@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>传悦后台</title>
+	<script src="vue.js"></script>
+	<script src="axio.js"></script>
+	<link rel="stylesheet" href="bootstrap.css">
+	<style>
+		html,body{
+			font-family: "Arial";
+			font-size: 14px;
+			width: 100%;
+			height: 100%;
+		}
+		#div{
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+		h1{
+			margin: 0;
+			text-align:center;
+			color:#fff;
+			line-height:100px;
+			background-color:blue;
+		}
+		.div1{
+			position: relative;
+			height: 1500px;
+		}
+		.div2{
+			width: 200px;
+			background-color:pink;
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			float: left;
+			padding-top: 20px;
+		}
+		.div3{
+			width: 100%;
+			padding: 20px 20px 20px 220px;
+			float: left;
+		}
+		.div4{
+			float: right;
+			position:absolute;
+			top:20px;
+			right:20px;
+		}
+		.div5{
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background-color: rgba(0, 0, 0, 0.7);
+		}
+		.div5 p{
+			margin-top:50px;
+		}
+		.div6{
+			width: 600px;
+			padding: 20px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			background-color: #fff;
+		}
+		.form-group{
+			display:none;
+		}
+	</style>
+</head>
+<body>
+	<div id="div">
+		<h1>传悦管理</h1>
+		<div class="div1">
+			<div class="div2">
+				<ul>
+					<li><a href="#">传悦后台管理</a></li>
+					<li><a href="#">传悦后台管理1</a></li>
+					<li><a href="#">传悦后台管理2</a></li>
+					<li><a href="#">传悦后台管理3</a></li>
+					<li><a href="#">传悦后台管理4</a></li>
+				</ul>
+			</div>
+			<div class="div3">
+				<button class="btn btn-primary div4" @click="createCon">新建</button>
+				<table class="table table-hover table-responsive">
+					<thead>
+						<tr>
+							<th width="100">编号</th>
+							<th width="200">标题</th>
+							<th width="400">内容</th>
+							<th width="200">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(item,index) of xinde" v-if="item.title">
+							<td>{{item.id}}</td>
+							<td>{{item.title}}</td>
+							<td>{{item.neirong.substring(0,80)}}</td>
+							<td>
+								<button class="btn btn-primary" @click="xiu(index)">修改</button>
+								<button class="btn btn-danger" @click="shan(index)">删除</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<aaa :pp="vv" @tijiao="cc" @nei="cc"></aaa>
+		<www :pp1="vv1" :con="news" @tijiao="cc" @nei="cc"></www>
+	</div>
+	<script>
+		Vue.component("aaa",{
+			template:`
+				<div class="div5" v-if="pp">
+					<div class="div6">
+						<form action="http://127.0.0.1:86/qq" method="get">
+							<div>
+						    	<label for="title">标题</label>
+						   	 	<input type="text" class="form-control" name="title">
+						  </div>
+						  <div>
+						    	<label for="">内容</label>
+						   	 	<textarea class="form-control" rows="6" name="neirong"></textarea>
+						  </div>
+						  <p style="text-align:center;">
+						  	<input type="submit" class="btn btn-info" value="确定提交" @click="tijiao">
+						  	<input type="button" class="btn btn-danger" value="取消" @click="nei">
+						  </p>
+						</form>
+					</div>
+				</div>
+			`,
+			props:["pp"],
+			methods:{
+				tijiao(){
+					this.$emit("tijiao")
+				},
+				nei(){
+					this.$emit("nei")
+				}
+			}
+		});
+		Vue.component("www",{
+			template:`
+				<div class="div5" v-if="pp1">
+					<div class="div6">
+						<form action="http://127.0.0.1:86/ww" method="get">
+							<div class="form-group">
+						   	 	<input type="text" class="form-control" id="id" name="id" v-model="con.id" readonly>
+						  	</div>
+							<div>
+						    	<label for="title">标题</label>
+						   	 	<input type="text" class="form-control" name="title" v-model="con.title">
+						  	</div>
+						  	<div>
+						    	<label for="">内容</label>
+						   	 	<textarea class="form-control" rows="6" name="neirong" v-model="con.neirong"></textarea>
+						  	</div>
+						  	<p style="text-align:center;">
+						  		<input type="submit" class="btn btn-info" value="确定提交" @click="tijiao">
+						  		<input type="button" class="btn btn-danger" value="取消" @click="nei">
+						  	</p>
+						</form>
+					</div>
+				</div>
+			`,
+			props:["pp1","con"],
+			methods:{
+				tijiao(){
+					this.$emit("tijiao")
+				},
+				nei(){
+					this.$emit("nei")
+				}
+			}
+		});
+
+		var root = new Vue({
+			el:"#div",
+			data:{
+				news:null,
+				xinde:null,
+				vv:false,
+				vv1:false
+			},
+			methods:{
+				createCon(){
+					this.vv = true;
+				},
+				cc(index){
+					this.vv = false;
+					this.vv1 = false;
+					this.news = null;
+					axios.get("/xin").then((response)=>{
+						console.log(response.data)
+						this.xinde = response.data;
+					});
+				},
+				shan(index){
+					if(confirm()){
+						axios.get(`/ee?newsId=${this.xinde[index].id}`);
+						this.xinde[index].title = null;
+					}
+				},
+				xiu(index){
+					this.vv1 = true;
+					this.news = this.xinde[index];
+				}
+			},
+			mounted:function(){
+				axios.get("/xin").then((response)=>{
+					this.xinde = response.data;
+				});
+				
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+*{margin:0;padding:0;}
+li{list-style:none;}
+a{text-decoration:none}
+body{background-color: #f0f1f1;}
+.cf:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.kuang .liang a{
+	background-color: #dd4012;
+	color:#fff;
+}
+.kuang{
+	background-color: #323232;
+	border-top:1px solid #3a3a3a;
+	line-height:47px;
+}
+.banxin{
+	width:1100px;
+	margin:0 auto;
+}
+.banxin1{
+	position:relative;
+}
+.banxin1 ul{
+	margin-left:210px;
+	float:left;
+}
+.banxin1 ul li{
+	float:left;
+	font-size:13px;
+	color:#a6a6a6;
+	text-align:center;
+}
+.banxin1 li a{
+	color:#a6a6a6;
+	width:87px;
+	display:block;
+	transition:all 0.7s;
+}
+.banxin1 li:hover a{
+	background-color: #dd4012;
+	color:#fff;
+}
+.div1{
+	float:right;
+}
+.div1 img{
+	float:left;
+	display:block;
+	margin-top:16px;
+	margin-left:8px;
+}
+.div1 p{
+	float:left;
+	font-size:13px;
+	color:#666;
+	margin-left:8px;
+}
+.div2{
+	position:absolute;
+	top:0;
+	left:0;
+	z-index: 2;
+}
+.logo{
+	background-image: url(../images/uu2.jpg);
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	height:220px;
+}
+.kuang1{
+	position:relative;
+	margin-bottom:28px;
+}
+.tiao{
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	background-color:rgba(0,0,0,0.4);
+}
+.kuang5{
+	background-color: #323232;
+	height:82px;
+	margin-top:40px;
+}
+.kuang5 a img{
+	display:block;
+	float:left;
+	margin-top:24px;
+}
+.kuang5 ul{
+	float:right;
+}
+.kuang5 ul li{
+	float:right;
+	font-size:12px;
+	margin-left:20px;
+	margin-top:28px;
+}
+.kuang5 li a{
+	color:#999;
+	transition:all 0.7s;
+}
+.kuang5 li a:hover{
+	color:#dd4012;
+}
+.kuang5 p{
+	float:right;
+	font-size:12px;
+	color:#666;
+	margin-top:10px;
+}
